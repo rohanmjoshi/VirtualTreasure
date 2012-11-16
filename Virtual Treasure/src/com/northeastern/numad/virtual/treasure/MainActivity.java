@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void loginButtonClicked(View v) {
-		Intent i = new Intent(MainActivity.this, ThingsToDo.class);
+		Intent i = new Intent(MainActivity.this, ThingsToDoActivity.class);
 		startActivity(i);
 	}
 }
