@@ -5,16 +5,30 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.android.AsyncFacebookRunner;
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
+
 public class MainActivity extends Activity {
+
+	String TAG = "virtualtreasure";
+
+	Facebook facebook = new Facebook("561901693827304");
+	AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
+
+	private SharedPreferences mPrefs;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +42,6 @@ public class MainActivity extends Activity {
 
 			}
 		};
-
-		lButton.setOnClickListener(sClick);
 
 	}
 
@@ -76,5 +88,66 @@ public class MainActivity extends Activity {
 						});
 
 		return builder.create();
+	}
+
+	// Facebook method
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		facebook.authorizeCallback(requestCode, resultCode, data);
+	}
+
+	public void facebookLoginButtonClicked(View v) {
+		Log.i(TAG, "facebook button clicked");
+		mPrefs = getPreferences(MODE_PRIVATE);
+		String access_token = mPrefs.getString("access_token", null);
+		long expires = mPrefs.getLong("access_expires", 0);
+		if (access_token != null) {
+			facebook.setAccessToken(access_token);
+		}
+		if (expires != 0) {
+			facebook.setAccessExpires(expires);
+		}
+
+		/*
+		 * Only call authorize if the access_token has expired.
+		 */
+		if (!facebook.isSessionValid()) {
+			// session is invalid create another token
+			facebook.authorize(this, new String[] {}, new DialogListener() {
+				@Override
+				public void onComplete(Bundle values) {
+					SharedPreferences.Editor editor = mPrefs.edit();
+					editor.putString("access_token", facebook.getAccessToken());
+					editor.putLong("access_expires",
+							facebook.getAccessExpires());
+					editor.commit();
+					startThingsToDoActivity();
+
+				}
+
+				@Override
+				public void onFacebookError(FacebookError error) {
+				}
+
+				@Override
+				public void onError(DialogError e) {
+				}
+
+				@Override
+				public void onCancel() {
+				}
+			});
+		} else {
+			// session is still valid
+			startThingsToDoActivity();
+		}
+	}
+
+	public void startThingsToDoActivity() {
+		// if the login is successful then go to another activity
+		Intent i = new Intent(MainActivity.this, ThingsToDoActivity.class);
+		startActivity(i);
 	}
 }

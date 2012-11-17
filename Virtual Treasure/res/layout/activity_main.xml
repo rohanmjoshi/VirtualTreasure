@@ -39,7 +39,7 @@
         android:layout_below="@+id/button1"
         android:layout_marginTop="30dp"
         android:background="@drawable/blackbutton"
-        android:onClick="loginButtonClicked"
+        android:onClick="facebookLoginButtonClicked"
         android:text="Facebook Login" />
 
 </RelativeLayout>
