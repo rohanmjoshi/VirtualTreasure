@@ -9,6 +9,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+ 	<uses-feature android:name="android.hardware.camera" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -35,6 +37,13 @@
         </activity>
         <activity android:name=".CheckMessageMapActivity" >
         </activity>
+        <activity android:name=".ActivityMaps" >
+        </activity>
+        <activity android:name=".ActivityCamera" 
+            android:screenOrientation="landscape"
+     		android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
+        
     </application>
 
 </manifest>

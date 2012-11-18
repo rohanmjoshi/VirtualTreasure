@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 
 	String TAG = "virtualtreasure";
 
-		Facebook facebook = new Facebook("561901693827304");
+    Facebook facebook = new Facebook("561901693827304");
 	AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
 
 	private SharedPreferences mPrefs;
@@ -35,20 +35,28 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Button lButton = (Button) findViewById(R.id.button1);
+		Button lButton = (Button) findViewById(R.id.buttonLogin);
+		Button lfbButton = (Button) findViewById(R.id.buttonFBLogin);
+		Button cButton = (Button) findViewById(R.id.buttonAbout);
 		OnClickListener sClick = new OnClickListener() {
 			public void onClick(View v) {
 				onCreateDialog().show();
 
 			}
 		};
+		OnClickListener aClick = new OnClickListener() {
+			public void onClick(View v) {
+				startCameraActivity();
 
+			}
+		};
+		lButton.setOnClickListener(sClick);
+		cButton.setOnClickListener(aClick);
 	}
 
 	public Dialog onCreateDialog() {
 
-		final Intent intentThingsToDo = new Intent(this,
-				ThingsToDoActivity.class);
+	
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		LayoutInflater inflater = this.getLayoutInflater();
@@ -77,7 +85,7 @@ public class MainActivity extends Activity {
 											Toast.LENGTH_LONG);
 									toast.show();
 								} else
-									startActivity(intentThingsToDo);
+									startThingsToDoActivity();
 							}
 						})
 				.setNegativeButton("Back",
@@ -148,6 +156,12 @@ public class MainActivity extends Activity {
 	public void startThingsToDoActivity() {
 		// if the login is successful then go to another activity
 		Intent i = new Intent(MainActivity.this, ThingsToDoActivity.class);
+		startActivity(i);
+	}
+	
+	public void startCameraActivity() {
+		// if the login is successful then go to another activity
+		Intent i = new Intent(MainActivity.this, ActivityMaps.class);
 		startActivity(i);
 	}
 }

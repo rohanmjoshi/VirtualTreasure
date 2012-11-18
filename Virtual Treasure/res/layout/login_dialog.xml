@@ -3,8 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <TextView
-        android:text="Virtual Treasue"
+        android:text="Login"
         android:gravity="center"
+        style="@style/Text"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:scaleType="center"
