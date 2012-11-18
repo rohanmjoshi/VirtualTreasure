@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+	   	android:layout_width="fill_parent"
+	   	android:layout_height="fill_parent"
+	   	android:id="@+id/rlMaps"
+	   	android:orientation="vertical">
+	<com.google.android.maps.MapView
+	    android:id="@+id/mapview"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:clickable="true"
+	    android:apiKey="0N9Hs2CwlucoR6_S26K5N2lt1zn2dNiAmpxdJGA"
+	/>
+	<ImageButton 
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentBottom="true"
+	    android:layout_marginLeft="10sp"
+	    android:layout_marginBottom="10sp"
+	    android:layout_width="50sp"
+	    android:layout_height="50sp"
+	    android:id="@+id/ibCompass"
+	    android:src="@drawable/ic_menu_compass"/>
+	<ImageButton 
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentBottom="true"
+	    android:layout_marginRight="10sp"
+	    android:layout_marginBottom="10sp"
+	    android:layout_width="50sp"
+	    android:layout_height="50sp"
+	    android:id="@+id/ibCurrentLocation"
+	    android:src="@drawable/ic_menu_mylocation"/>
+</RelativeLayout>

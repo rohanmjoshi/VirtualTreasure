@@ -37,11 +37,11 @@
     <Button
         android:id="@+id/buttonFBLogin"
         style="@style/ButtonText"
+        android:onClick="facebookLoginButtonClicked"
         android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/blackbutton"
-        android:onClick="loginButtonClicked"
         android:text="Facebook Login" />
     
     <Button
