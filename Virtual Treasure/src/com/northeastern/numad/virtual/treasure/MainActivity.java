@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 
 	String TAG = "virtualtreasure";
 
-	Facebook facebook = new Facebook("561901693827304");
+		Facebook facebook = new Facebook("561901693827304");
 	AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
 
 	private SharedPreferences mPrefs;

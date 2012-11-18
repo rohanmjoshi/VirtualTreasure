@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,6 +15,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
@@ -37,6 +43,8 @@ public class GameActivity extends MapActivity implements LocationListener {
 	private Boolean areRandomPointsGenerated = false;
 	private long startTime;
 	private long timeSpent = 0;
+
+	Facebook mFacebook = new Facebook("561901693827304");
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -98,7 +106,6 @@ public class GameActivity extends MapActivity implements LocationListener {
 		}
 	}
 
-
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -157,21 +164,53 @@ public class GameActivity extends MapActivity implements LocationListener {
 						startTime = currentTime;
 					} else {
 						// user has found all the treasure points
-						
-						//convert milliseconds to seconds
-						timeSpent/=1000; 
-						
+
+						// convert milliseconds to seconds
+						timeSpent /= 1000;
+
 						// convert timeSpent to hour:minute:second format
-						String timeToShow = String.format("%02d:%02d:%02d", timeSpent/3600, (timeSpent%3600)/60, (timeSpent%60));
-						Log.i(TAG,timeToShow);
-						Toast.makeText(
-								this,
-								"You finished the treasure hunt in " + timeToShow,
-								Toast.LENGTH_LONG).show();
+						String timeToShow = String.format("%02d:%02d:%02d",
+								timeSpent / 3600, (timeSpent % 3600) / 60,
+								(timeSpent % 60));
+						Log.i(TAG, timeToShow);
+						// Toast.makeText(
+						// this,
+						// "You finished the treasure hunt in "
+						// + timeToShow, Toast.LENGTH_LONG).show();
+
+						shareOnFinishDialog("You finished the treasure hunt in "
+								+ timeToShow
+								+ "\nWould you like to share your score on Facebook ?");
 					}
 				}
 			}
 		}
+	}
+
+	public void shareOnFinishDialog(String message) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+		// Add the buttons
+		builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				showFacebookDialog("");
+			}
+		});
+		builder.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.dismiss();
+					}
+				});
+
+		builder.setMessage(message);
+		// Create the AlertDialog
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
+
+	public void showFacebookDialog(String message) {
+		// post on user's wall.
+		mFacebook.dialog(this, "feed", new PostDialogListener());
 	}
 
 	@Override
@@ -245,11 +284,11 @@ public class GameActivity extends MapActivity implements LocationListener {
 			double tempLon;
 			double tempLat;
 			Random r = new Random();
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 4; i++) {
 				switch (i) {
 				case 0:
 					// north
-					int tempInt = r.nextInt(DISTANCE);
+					int tempInt = r.nextInt(DISTANCE) + 1;
 					tempLon = lon - (tempInt / DCONSTANT);
 					tempLat = lat;
 					Location loc = new Location("");
@@ -259,7 +298,7 @@ public class GameActivity extends MapActivity implements LocationListener {
 					break;
 				case 1:
 					// east
-					tempInt = r.nextInt(DISTANCE);
+					tempInt = r.nextInt(DISTANCE) + 1;
 					tempLon = lon;
 					tempLat = lat + (tempInt / DCONSTANT);
 					loc = new Location("");
@@ -269,7 +308,7 @@ public class GameActivity extends MapActivity implements LocationListener {
 					break;
 				case 2:
 					// south
-					tempInt = r.nextInt(DISTANCE);
+					tempInt = r.nextInt(DISTANCE) + 1;
 					tempLon = lon + (tempInt / DCONSTANT);
 					tempLat = lat;
 					loc = new Location("");
@@ -279,7 +318,7 @@ public class GameActivity extends MapActivity implements LocationListener {
 					break;
 				case 3:
 					// west
-					tempInt = r.nextInt(DISTANCE);
+					tempInt = r.nextInt(DISTANCE) + 1;
 					tempLon = lon;
 					tempLat = lat - (tempInt / DCONSTANT);
 					loc = new Location("");
@@ -323,4 +362,31 @@ public class GameActivity extends MapActivity implements LocationListener {
 
 	}
 
+	private class PostDialogListener implements DialogListener {
+
+		@Override
+		public void onComplete(Bundle values) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onFacebookError(FacebookError e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onError(DialogError e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onCancel() {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
 }
