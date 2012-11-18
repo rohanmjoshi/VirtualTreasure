@@ -77,6 +77,8 @@ public class GameActivity extends MapActivity implements LocationListener {
 		latLongList = new ArrayList<Location>();
 		getUserLocation();
 
+		shareOnFinishDialog("You finished the treasure hunt in "
+				+ "\nWould you like to share your score on Facebook ?");
 	}
 
 	// getUserLocation
@@ -206,11 +208,6 @@ public class GameActivity extends MapActivity implements LocationListener {
 		// Create the AlertDialog
 		AlertDialog dialog = builder.create();
 		dialog.show();
-	}
-
-	public void showFacebookDialog(String message) {
-		// post on user's wall.
-		mFacebook.dialog(this, "feed", new PostDialogListener());
 	}
 
 	@Override
@@ -362,11 +359,25 @@ public class GameActivity extends MapActivity implements LocationListener {
 
 	}
 
+	public void showFacebookDialog(String message) {
+		// post on user's wall.
+		// mFacebook.authorize(this, new PostDialogListener());
+
+		Bundle parameters = new Bundle();
+		//parameters.putString("message", "Some message");// the message to post
+		parameters.putString("app_id", "561901693827304");
+		parameters.putString("caption", "some caption");
+		parameters.putString("description", "some description");
+														// to the wall
+		mFacebook.dialog(GameActivity.this, "feed", parameters,
+				new PostDialogListener());// "stream.publish" is an API call
+		// mFacebook.dialog(this, "feed", new PostDialogListener());
+	}
+
 	private class PostDialogListener implements DialogListener {
 
 		@Override
 		public void onComplete(Bundle values) {
-			// TODO Auto-generated method stub
 
 		}
 

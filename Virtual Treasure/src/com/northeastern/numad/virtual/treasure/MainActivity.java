@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
 				}
 			});
 		} else {
-			// session is still valid
+			// session is  valid
 			startThingsToDoActivity();
 		}
 	}
