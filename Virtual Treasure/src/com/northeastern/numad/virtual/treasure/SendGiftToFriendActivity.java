@@ -40,6 +40,10 @@ public class SendGiftToFriendActivity extends Activity {
 				KeyValueAPI.put("teamAR", "hello123", friendId + KEY_DELIMITER
 						+ friendName, message);
 			} else {
+				if(oldMessage.equals(""))
+					KeyValueAPI.put("teamAR", "hello123", friendId + KEY_DELIMITER
+							+ friendName, message);
+				else
 				KeyValueAPI.put("teamAR", "hello123", friendId + KEY_DELIMITER
 						+ friendName, oldMessage + MESSAGE_DELIMITER + message);
 			}
