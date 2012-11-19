@@ -1,7 +1,25 @@
+
+/*
+ * Copyright (C) 2007 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.northeastern.numad.virtual.treasure;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +46,9 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
 	private MapView mMapView;
 	private MapsItemizedOverlay mCurrentLocationOverlay;
 	private Location mCurrentLocation;
+	private Location location;
+	private static final int DISTANCE = 2;
+	private static final double DCONSTANT = 300;
 	
 	public static ArrayList<TreasureData> mTreasureDataList;
 	
@@ -50,24 +71,86 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
 	    
 	    // Populate fake data
 	    mTreasureDataList = new ArrayList<TreasureData>();
+	    Location loc = new Location ("");
+	      
+	    double lat = 0;
+		double lon = 0;
+		double tempLon;
+		double tempLat;
+		String locLat;
+		String locLon;
+		Random r = new Random();
+		for (int i = 0; i < 4; i++) {
+			switch (i) {
+			case 0:
+				// north
+				
+				int tempInt = r.nextInt(DISTANCE) + 1;
+				tempLon = lon - (tempInt / DCONSTANT);
+				tempLat = lat;
+				loc = new Location("");
+				loc.setLatitude(tempLat);
+				String g = "lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com";
+				//locLat = loc.getLatitude();
+				loc.setLongitude(tempLon);
+				mTreasureDataList.add(new TreasureData(g, ActivityMaps.this));
+				break;
+			case 1:
+				// east
+				tempInt = r.nextInt(DISTANCE) + 1;
+				tempLon = lon;
+				tempLat = lat + (tempInt / DCONSTANT);
+				loc = new Location("");
+				loc.setLatitude(tempLat);
+				loc.setLongitude(tempLon);
+				mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
+				break;
+			case 2:
+				// south
+				tempInt = r.nextInt(DISTANCE) + 1;
+				tempLon = lon + (tempInt / DCONSTANT);
+				tempLat = lat;
+				loc = new Location("");
+				loc.setLatitude(tempLat);
+				loc.setLongitude(tempLon);
+				mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
+				break;
+			case 3:
+				// west
+				tempInt = r.nextInt(DISTANCE) + 1;
+				tempLon = lon;
+				tempLat = lat - (tempInt / DCONSTANT);
+				loc = new Location("");
+				loc.setLatitude(tempLat);
+				loc.setLongitude(tempLon);
+				mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
+				break;
+			}
+		}
+	    
+		
+		//mTreasureDataList.add(new TreasureData(g, ActivityMaps.this));
+	    //generateRandomPoints();
+	    
+	    
 	    
 	    // Boston Locations
-        mTreasureDataList.add(new TreasureData("lat=42.345192&lon=-71.08597&facebook//aman124@gmail.com", this));
-        mTreasureDataList.add(new TreasureData("lat=42.341195&lon=-71.084425&twitter//@aman124", this));
-        mTreasureDataList.add(new TreasureData("lat=42.343225&lon=-71.09489&twitter//@random", this));
-        mTreasureDataList.add(new TreasureData("lat=42.338467&lon=-71.102099&http://www.apple.com", this));
-        mTreasureDataList.add(new TreasureData("lat=42.327332&lon=-71.090298&http://www.google.com", this));
-        mTreasureDataList.add(new TreasureData("lat=42.330948&lon=-71.104374&facebook//aman124@gmail.com", this));
-        mTreasureDataList.add(new TreasureData("lat=42.338721&lon=-71.084161&twitter//@aman124", this));
-        mTreasureDataList.add(new TreasureData("lat=42.335453&lon=-71.094546&http://www.android.com", this));
-        mTreasureDataList.add(new TreasureData("lat=42.328601&lon=-71.099396&facebook//random@gmail.com", this));
-        mTreasureDataList.add(new TreasureData("lat=42.333423&lon=-71.097686&http://www.facebook.com", this));
-        
-        // Seattle Locations
-        mTreasureDataList.add(new TreasureData("lat=47.620657&lon=-122.18946&http://www.microsoft.com", this));
-        mTreasureDataList.add(new TreasureData("lat=47.620758&lon=-122.184589&http://www.microsoft.com", this));
-        mTreasureDataList.add(new TreasureData("lat=47.618922&lon=-122.182562&http://www.microsoft.com", this));
-        mTreasureDataList.add(new TreasureData("lat=47.62274&lon=-122.193054&http://www.microsoft.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.345192&lon=-71.08597&facebook//aman124@gmail.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.341195&lon=-71.084425&twitter//@aman124", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.343225&lon=-71.09489&twitter//@random", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.338467&lon=-71.102099&http://www.apple.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.327332&lon=-71.090298&http://www.google.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.330948&lon=-71.104374&facebook//aman124@gmail.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.338721&lon=-71.084161&twitter//@aman124", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.335453&lon=-71.094546&http://www.android.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.328601&lon=-71.099396&facebook//random@gmail.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=42.333423&lon=-71.097686&http://www.facebook.com", this));
+//        
+//        // Seattle Locations
+//        mTreasureDataList.add(new TreasureData("lat=47.620657&lon=-122.18946&http://www.microsoft.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=47.620758&lon=-122.184589&http://www.microsoft.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=47.618922&lon=-122.182562&http://www.microsoft.com", this));
+//        mTreasureDataList.add(new TreasureData("lat=47.62274&lon=-122.193054&http://www.microsoft.com", this));
         
         
 	    
@@ -172,6 +255,70 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
     		mCurrentLocation = location;
     		ZoomToLocation(location);
     	}
+	}
+	
+	public void generateRandomPoints() {
+		//Log.i(TAG, "generate random points called");
+		// generate 4 random points near the user
+		if (location != null) {
+			double lat = location.getLatitude();
+			double lon = location.getLongitude();
+			double tempLon;
+			double tempLat;
+			String locLat;
+			String locLon;
+			Random r = new Random();
+			for (int i = 0; i < 4; i++) {
+				switch (i) {
+				case 0:
+					// north
+					
+					int tempInt = r.nextInt(DISTANCE) + 1;
+					tempLon = lon - (tempInt / DCONSTANT);
+					tempLat = lat;
+					Location loc = new Location("");
+					loc.setLatitude(tempLat);
+					String g = "lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com";
+					//locLat = loc.getLatitude();
+					loc.setLongitude(tempLon);
+					mTreasureDataList.add(new TreasureData(g, ActivityMaps.this));
+					break;
+				case 1:
+					// east
+					tempInt = r.nextInt(DISTANCE) + 1;
+					tempLon = lon;
+					tempLat = lat + (tempInt / DCONSTANT);
+					loc = new Location("");
+					loc.setLatitude(tempLat);
+					loc.setLongitude(tempLon);
+					mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
+					break;
+				case 2:
+					// south
+					tempInt = r.nextInt(DISTANCE) + 1;
+					tempLon = lon + (tempInt / DCONSTANT);
+					tempLat = lat;
+					loc = new Location("");
+					loc.setLatitude(tempLat);
+					loc.setLongitude(tempLon);
+					mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
+					break;
+				case 3:
+					// west
+					tempInt = r.nextInt(DISTANCE) + 1;
+					tempLon = lon;
+					tempLat = lat - (tempInt / DCONSTANT);
+					loc = new Location("");
+					loc.setLatitude(tempLat);
+					loc.setLongitude(tempLon);
+					mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
+					break;
+				}
+			}
+
+			
+
+		}
 	}
     
    
