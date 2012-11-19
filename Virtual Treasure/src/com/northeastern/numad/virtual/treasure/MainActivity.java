@@ -56,8 +56,6 @@ public class MainActivity extends Activity {
 
 	public Dialog onCreateDialog() {
 
-	
-
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		LayoutInflater inflater = this.getLayoutInflater();
 		final View v = inflater.inflate(R.layout.login_dialog, null);
