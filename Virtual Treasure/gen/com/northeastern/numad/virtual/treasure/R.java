@@ -41,13 +41,14 @@ public final class R {
         public static final int cancelButton=0x7f070011;
         public static final int debugText=0x7f070002;
         public static final int difficultyLevelLabel=0x7f07000e;
+        public static final int editText1=0x7f070015;
         public static final int flCamera=0x7f070000;
-        public static final int gridView1=0x7f070015;
+        public static final int gridView1=0x7f070016;
         public static final int ibCompass=0x7f07000b;
         public static final int ibCurrentLocation=0x7f07000c;
         public static final int image=0x7f070003;
         public static final int mapview=0x7f07000a;
-        public static final int menu_settings=0x7f070016;
+        public static final int menu_settings=0x7f070017;
         public static final int okButton=0x7f070010;
         public static final int password=0x7f070014;
         public static final int rlMaps=0x7f070009;
@@ -66,8 +67,10 @@ public final class R {
         public static final int difficulty_level_dialog=0x7f030005;
         public static final int game=0x7f030006;
         public static final int leave_message_activity=0x7f030007;
-        public static final int login_dialog=0x7f030008;
-        public static final int things_to_do=0x7f030009;
+        public static final int list_check_messages=0x7f030008;
+        public static final int login_dialog=0x7f030009;
+        public static final int send_gift_to_friend=0x7f03000a;
+        public static final int things_to_do=0x7f03000b;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;

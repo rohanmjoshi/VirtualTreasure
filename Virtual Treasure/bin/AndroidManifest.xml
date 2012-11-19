@@ -42,6 +42,8 @@
         </activity>
         <activity android:name=".LeaveMessageActivity" >
         </activity>
+        <activity android:name=".SendGiftToFriendActivity" >
+        </activity>
         <activity
             android:name=".ActivityCamera"
             android:screenOrientation="landscape"
