@@ -60,7 +60,7 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:background="@drawable/blackbutton"
-        android:onClick="loginButtonClicked"
+        android:onClick="startCompassActivity"
         android:text="Exit" />
 
 </LinearLayout>

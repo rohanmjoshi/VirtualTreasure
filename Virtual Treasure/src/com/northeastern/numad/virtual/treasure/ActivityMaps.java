@@ -71,69 +71,15 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
 	    
 	    // Populate fake data
 	    mTreasureDataList = new ArrayList<TreasureData>();
-	    Location loc = new Location ("");
-	      
-	    double lat = 0;
-		double lon = 0;
-		double tempLon;
-		double tempLat;
-		String locLat;
-		String locLon;
-		Random r = new Random();
-		for (int i = 0; i < 4; i++) {
-			switch (i) {
-			case 0:
-				// north
-				
-				int tempInt = r.nextInt(DISTANCE) + 1;
-				tempLon = lon - (tempInt / DCONSTANT);
-				tempLat = lat;
-				loc = new Location("");
-				loc.setLatitude(tempLat);
-				String g = "lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com";
-				//locLat = loc.getLatitude();
-				loc.setLongitude(tempLon);
-				mTreasureDataList.add(new TreasureData(g, ActivityMaps.this));
-				break;
-			case 1:
-				// east
-				tempInt = r.nextInt(DISTANCE) + 1;
-				tempLon = lon;
-				tempLat = lat + (tempInt / DCONSTANT);
-				loc = new Location("");
-				loc.setLatitude(tempLat);
-				loc.setLongitude(tempLon);
-				mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
-				break;
-			case 2:
-				// south
-				tempInt = r.nextInt(DISTANCE) + 1;
-				tempLon = lon + (tempInt / DCONSTANT);
-				tempLat = lat;
-				loc = new Location("");
-				loc.setLatitude(tempLat);
-				loc.setLongitude(tempLon);
-				mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
-				break;
-			case 3:
-				// west
-				tempInt = r.nextInt(DISTANCE) + 1;
-				tempLon = lon;
-				tempLat = lat - (tempInt / DCONSTANT);
-				loc = new Location("");
-				loc.setLatitude(tempLat);
-				loc.setLongitude(tempLon);
-				mTreasureDataList.add(new TreasureData("lat="+ loc.getLatitude() +"&lon="+ loc.getLongitude() +"&http://www.facebook.com", this));
-				break;
-			}
-		}
+	   
 	    
-		
+	    
+	    
 		//mTreasureDataList.add(new TreasureData(g, ActivityMaps.this));
 	    //generateRandomPoints();
 	    
 	    
-	    
+	      
 	    // Boston Locations
 //        mTreasureDataList.add(new TreasureData("lat=42.345192&lon=-71.08597&facebook//aman124@gmail.com", this));
 //        mTreasureDataList.add(new TreasureData("lat=42.341195&lon=-71.084425&twitter//@aman124", this));
@@ -187,6 +133,7 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
 	    
 	    // Get current location
 	    mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+	     
 	}
 	
 	@Override

@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:gravity="center"
+    >
 
-    <GridView
-        android:id="@+id/gridView1"
-        android:layout_width="match_parent"
+    
+   <Button
+        android:id="@+id/buttonNewGame"
+        style="@style/ButtonTextBlack"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:numColumns="2" >
-    </GridView>
+        android:background="@drawable/whitebutton"
+        android:onClick="newGameButtonClicked"
+        android:text="New Game" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/buttonExit"
+        style="@style/ButtonTextBlack"
+        android:onClick="facebookLoginButtonClicked"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/whitebutton"
+        android:text="Rules" />
+    
+    <Button
+        android:id="@+id/buttonAbout"
+        style="@style/ButtonTextBlack"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:background="@drawable/whitebutton"
+        android:onClick="loginButtonClicked"
+        android:text="About" />
+    <Button
+        android:id="@+id/buttonExit"
+        style="@style/ButtonTextBlack"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:background="@drawable/whitebutton"
+        android:onClick="loginButtonClicked"
+        android:text="Exit" />
+
+</LinearLayout>
