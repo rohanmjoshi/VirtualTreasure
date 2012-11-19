@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		Button lButton = (Button) findViewById(R.id.buttonLogin);
-		Button lfbButton = (Button) findViewById(R.id.buttonFBLogin);
+		//Button lfbButton = (Button) findViewById(R.id.buttonFBLogin);
 		Button cButton = (Button) findViewById(R.id.buttonAbout);
 		OnClickListener sClick = new OnClickListener() {
 			public void onClick(View v) {
@@ -160,6 +160,12 @@ public class MainActivity extends Activity {
 	public void startCameraActivity() {
 		// if the login is successful then go to another activity
 		Intent i = new Intent(MainActivity.this, ActivityMaps.class);
+		startActivity(i);
+	}
+	
+	public void startCompassActivity(View v) {
+		// if the login is successful then go to another activity
+		Intent i = new Intent(MainActivity.this, CompassActivity.class);
 		startActivity(i);
 	}
 }

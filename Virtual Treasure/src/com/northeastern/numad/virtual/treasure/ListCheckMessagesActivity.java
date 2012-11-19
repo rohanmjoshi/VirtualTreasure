@@ -39,7 +39,7 @@ public class ListCheckMessagesActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub\
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.list_check_messages);
+//		setContentView(R.layout.list_check_messages);
 
 		checkFacebookAuthentication();
 	}
