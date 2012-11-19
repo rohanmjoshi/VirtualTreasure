@@ -142,7 +142,7 @@ public class LeaveMessageActivity extends ListActivity {
 						// android.R.layout.simple_list_item_1, friends);
 						ArrayAdapter aa = new ArrayAdapter<String>(
 								getBaseContext(),
-								android.R.layout.simple_dropdown_item_1line,
+								android.R.layout.simple_list_item_1,
 								getStringList(friends));
 						setListAdapter(aa);
 						aa.notifyDataSetChanged();
