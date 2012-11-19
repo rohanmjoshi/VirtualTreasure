@@ -9,8 +9,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA"/>
- 	<uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -25,7 +26,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> 
+            </intent-filter>
         </activity>
         <activity android:name=".ThingsToDoActivity" >
         </activity>
@@ -39,11 +40,15 @@
         </activity>
         <activity android:name=".ActivityMaps" >
         </activity>
-        <activity android:name=".ActivityCamera" 
-            android:screenOrientation="landscape"
-     		android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".LeaveMessageActivity" >
         </activity>
-        
+        <activity android:name=".SendGiftToFriendActivity" >
+        </activity>
+        <activity
+            android:name=".ActivityCamera"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

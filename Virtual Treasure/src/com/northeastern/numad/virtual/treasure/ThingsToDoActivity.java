@@ -51,6 +51,7 @@ public class ThingsToDoActivity extends Activity {
 					break;
 				case 2:
 					Log.i(TAG, "Leave Message button Clicked");
+					leaveMessageButtonClicked();
 					break;
 				case 3:
 					Log.i(TAG, "Check Message button clicked");
@@ -134,6 +135,11 @@ public class ThingsToDoActivity extends Activity {
 
 	public void checkMessageButtonClicked() {
 		Intent i = new Intent(this, CheckMessagesActivity.class);
+		startActivity(i);
+	}
+
+	public void leaveMessageButtonClicked() {
+		Intent i = new Intent(this, LeaveMessageActivity.class);
 		startActivity(i);
 	}
 }
