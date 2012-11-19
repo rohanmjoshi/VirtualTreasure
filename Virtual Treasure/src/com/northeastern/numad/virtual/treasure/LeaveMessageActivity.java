@@ -130,6 +130,7 @@ public class LeaveMessageActivity extends ListActivity {
 					Friend f = new Friend();
 					f.id = id;
 					f.name = n;
+					
 					friends.add(f);
 				}
 
@@ -142,7 +143,7 @@ public class LeaveMessageActivity extends ListActivity {
 						// android.R.layout.simple_list_item_1, friends);
 						ArrayAdapter aa = new ArrayAdapter<String>(
 								getBaseContext(),
-								android.R.layout.simple_list_item_1,
+								android.R.layout.simple_list_item_1,  /// Changed this now it shows fine
 								getStringList(friends));
 						setListAdapter(aa);
 						aa.notifyDataSetChanged();

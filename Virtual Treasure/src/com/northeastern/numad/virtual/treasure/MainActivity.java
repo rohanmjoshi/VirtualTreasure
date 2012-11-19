@@ -21,6 +21,8 @@ import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 
+import edu.neu.mobileclass.apis.KeyValueAPI;
+
 public class MainActivity extends Activity {
 
 	String TAG = "virtualtreasure";
@@ -38,6 +40,7 @@ public class MainActivity extends Activity {
 		Button lButton = (Button) findViewById(R.id.buttonLogin);
 		//Button lfbButton = (Button) findViewById(R.id.buttonFBLogin);
 		Button cButton = (Button) findViewById(R.id.buttonAbout);
+		KeyValueAPI.clear("teamAR", "hello123");
 		OnClickListener sClick = new OnClickListener() {
 			public void onClick(View v) {
 				onCreateDialog().show();
