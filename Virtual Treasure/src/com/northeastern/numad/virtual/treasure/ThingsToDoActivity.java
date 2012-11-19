@@ -98,7 +98,7 @@ public class ThingsToDoActivity extends Activity {
 		d.show();
 	}
 
-	public void checkMessageButtonClicked() {
+	public void checkMessageButtonClicked(View v) {
 		Intent i = new Intent(this, CheckMessagesActivity.class);
 		startActivity(i);
 	}

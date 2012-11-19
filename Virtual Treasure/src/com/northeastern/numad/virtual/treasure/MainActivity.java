@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 		Button lButton = (Button) findViewById(R.id.buttonLogin);
 		//Button lfbButton = (Button) findViewById(R.id.buttonFBLogin);
 		Button cButton = (Button) findViewById(R.id.buttonAbout);
-		KeyValueAPI.clear("teamAR", "hello123");
+		//KeyValueAPI.clear("teamAR", "hello123");
 		OnClickListener sClick = new OnClickListener() {
 			public void onClick(View v) {
 				onCreateDialog().show();

@@ -39,7 +39,7 @@ public class CompassActivity extends Activity implements SensorEventListener {
       // Rotate the canvas with the azimut      
       if (azimut != null)
         canvas.rotate(-azimut*360/(2*3.14159f), centerx, centery);
-      canvas.drawBitmap(mBitmap, centerx - 185, (float) (centery - 208.5), null);
+      canvas.drawBitmap(mBitmap, centerx - 185, (float) (centery - 215), null);
       canvas.drawColor(android.R.color.white);
     }
   }
