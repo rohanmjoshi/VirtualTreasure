@@ -50,9 +50,9 @@ public class ThingsToDoActivity extends Activity {
 					newGameButtonClicked();
 					break;
 				case 2:
-					Log.i(TAG, "Leave Message button Clicked");
-					leaveMessageButtonClicked();
-					break;
+//					Log.i(TAG, "Leave Message button Clicked");
+//					leaveMessageButtonClicked();
+//					break;
 				case 3:
 					Log.i(TAG, "Check Message button clicked");
 					checkMessageButtonClicked();
@@ -138,8 +138,8 @@ public class ThingsToDoActivity extends Activity {
 		startActivity(i);
 	}
 
-	public void leaveMessageButtonClicked() {
-		Intent i = new Intent(this, LeaveMessageActivity.class);
-		startActivity(i);
-	}
+//	public void leaveMessageButtonClicked() {
+//		Intent i = new Intent(this, LeaveMessageActivity.class);
+//		startActivity(i);
+//	}
 }
