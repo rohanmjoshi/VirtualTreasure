@@ -41,6 +41,7 @@ public final class R {
         public static final int buttonExit=0x7f070003;
         public static final int buttonFBLogin=0x7f070007;
         public static final int buttonLogin=0x7f070006;
+        public static final int buttonMsg=0x7f070018;
         public static final int buttonNewGame=0x7f070017;
         public static final int cancelButton=0x7f070011;
         public static final int debugText=0x7f070002;
@@ -52,7 +53,7 @@ public final class R {
         public static final int image=0x7f070004;
         public static final int linearLayout=0x7f070016;
         public static final int mapview=0x7f07000a;
-        public static final int menu_settings=0x7f070018;
+        public static final int menu_settings=0x7f070019;
         public static final int okButton=0x7f070010;
         public static final int password=0x7f070014;
         public static final int rlMaps=0x7f070009;
@@ -72,12 +73,13 @@ public final class R {
         public static final int check_message_map_activity=0x7f030006;
         public static final int check_messages=0x7f030007;
         public static final int difficulty_level_dialog=0x7f030008;
-        public static final int game=0x7f030009;
-        public static final int leave_message_activity=0x7f03000a;
-        public static final int list_check_messages=0x7f03000b;
-        public static final int login_dialog=0x7f03000c;
-        public static final int send_gift_to_friend=0x7f03000d;
-        public static final int things_to_do=0x7f03000e;
+        public static final int friend_list=0x7f030009;
+        public static final int game=0x7f03000a;
+        public static final int leave_message_activity=0x7f03000b;
+        public static final int list_check_messages=0x7f03000c;
+        public static final int login_dialog=0x7f03000d;
+        public static final int send_gift_to_friend=0x7f03000e;
+        public static final int things_to_do=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_compass=0x7f060000;

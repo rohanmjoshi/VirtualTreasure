@@ -103,8 +103,8 @@ public class ThingsToDoActivity extends Activity {
 		startActivity(i);
 	}
 
-//	public void leaveMessageButtonClicked() {
-//		Intent i = new Intent(this, LeaveMessageActivity.class);
-//		startActivity(i);
-//	}
+	public void leaveMessageButtonClicked(View v) {
+		Intent i = new Intent(this, LeaveMessageActivity.class);
+		startActivity(i);
+	}
 }
