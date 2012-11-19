@@ -20,6 +20,7 @@ import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
+import com.google.android.maps.MyLocationOverlay;
 
 import edu.neu.mobileclass.apis.KeyValueAPI;
 
@@ -156,7 +157,7 @@ public class MainActivity extends Activity {
 
 	public void startThingsToDoActivity() {
 		// if the login is successful then go to another activity
-		Intent i = new Intent(MainActivity.this, ThingsToDoActivity.class);
+		Intent i = new Intent(MainActivity.this, TreasureMenuActivity.class);
 		startActivity(i);
 	}
 	
@@ -166,9 +167,8 @@ public class MainActivity extends Activity {
 		startActivity(i);
 	}
 	
-	public void startCompassActivity(View v) {
+	public void exitActivity(View v) {
 		// if the login is successful then go to another activity
-		Intent i = new Intent(MainActivity.this, CompassActivity.class);
-		startActivity(i);
+		finish();
 	}
 }

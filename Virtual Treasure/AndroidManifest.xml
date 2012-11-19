@@ -11,8 +11,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    
-
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -53,22 +51,27 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name=".TreasureMenu"
+            android:name=".TreasureMenuActivity"
             android:label="@string/title_activity_treasure_menu" >
-            
         </activity>
         <activity
             android:name=".FindTreasure"
             android:label="@string/title_activity_find_treasure" >
-            
         </activity>
         <activity
             android:name=".CompassActivity"
             android:label="@string/title_activity_compass"
             android:screenOrientation="portrait" >
-           
         </activity>
-        
+        <activity
+            android:name=".HomeScreenActivity"
+            android:label="@string/title_activity_home_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

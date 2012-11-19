@@ -1,36 +1,71 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#000000">
 	
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome : "
+        android:layout_marginLeft="10sp"
+        android:layout_margin="10sp"
+        style="@style/ButtonText"
+        android:textSize="20dp"/>
+
     <Button
-        android:id="@+id/buttonExit"
+        android:id="@+id/bNotif"
         style="@style/ButtonText"
         android:layout_width="200dp"
-        android:layout_gravity="center"
+        android:layout_below="@id/tvWelcome"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/blackbutton"
-        android:onClick="loginButtonClicked"
+        android:onClick="checkMessageButtonClicked"
         android:text="Notifications" />
     <Button
-        android:id="@+id/buttonExit"
+        android:id="@+id/bCreate"
+        android:layout_below="@id/bNotif"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         style="@style/ButtonText"
         android:layout_width="200dp"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:background="@drawable/blackbutton"
-        android:onClick="loginButtonClicked"
+        android:onClick="leaveMessageButtonClicked"
         android:text="Create Treasure" />
+
     <Button
-        android:id="@+id/buttonExit"
+        android:id="@+id/bFind"
         style="@style/ButtonText"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/bCreate"
         android:layout_width="200dp"
-        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
         android:background="@drawable/blackbutton"
         android:onClick="loginButtonClicked"
         android:text="Find Treasure" />
     
+    <Button
+        android:id="@+id/bGame"
+        style="@style/ButtonText"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/bFind"
+        android:layout_width="200dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:background="@drawable/blackbutton"
+        android:onClick="treasureGameClicked"
+        android:text="Treasure Game" />
 
-</LinearLayout>
+</RelativeLayout>

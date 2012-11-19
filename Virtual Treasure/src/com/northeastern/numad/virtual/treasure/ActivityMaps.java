@@ -41,6 +41,7 @@ import com.google.android.maps.OverlayItem;
 
 public class ActivityMaps extends MapActivity implements LocationListener, OnTreasureShowListener{
 
+	private ImageButton ibCamera;
 	private ImageButton ibCompass;
 	private ImageButton ibCurrentLocation;
 	private MapView mMapView;
@@ -59,6 +60,7 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
 	    setContentView(R.layout.activity_maps);
 	    
 	    mMapView = (MapView) findViewById(R.id.mapview);
+	    ibCamera = (ImageButton) findViewById(R.id.ibCamera);
 	    ibCompass = (ImageButton) findViewById(R.id.ibCompass);
 	    ibCurrentLocation = (ImageButton) findViewById(R.id.ibCurrentLocation);
 	    
@@ -114,7 +116,7 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
         
 	    mapOverlays.add(itemizedoverlay);
 	    
-	    ibCompass.setOnClickListener(new OnClickListener() {
+	    ibCamera.setOnClickListener(new OnClickListener() {
 			
 			
 			public void onClick(View v) {
@@ -128,6 +130,15 @@ public class ActivityMaps extends MapActivity implements LocationListener, OnTre
 			
 			public void onClick(View v) {
 				ZoomToLocation(mCurrentLocation);
+			}
+		});
+	    
+	    ibCompass.setOnClickListener(new OnClickListener() {
+			
+			
+			public void onClick(View v) {
+				Intent myIntent = new Intent(ActivityMaps.this, CompassActivity.class);
+				ActivityMaps.this.startActivity(myIntent);
 			}
 		});
 	    

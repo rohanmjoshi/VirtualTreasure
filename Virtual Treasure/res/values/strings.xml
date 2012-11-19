@@ -50,5 +50,6 @@
     <string name="title_activity_treasure_menu">TreasureMenu</string>
     <string name="title_activity_find_treasure">FindTreasure</string>
     <string name="title_activity_compass">CompassActivity</string>
+    <string name="title_activity_home_screen">HomeScreenActivity</string>
 
 </resources>
