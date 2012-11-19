@@ -3,10 +3,8 @@ package com.northeastern.numad.virtual.treasure;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -129,6 +127,8 @@ public class ListCheckMessagesActivity extends ListActivity {
 						"hello123", userId + KEY_DELIMITER + userName);
 
 				treasureList = treasureListString.split(MESSAGE_DELIMITER);
+
+				Log.i("virtualtreasure", Arrays.toString(treasureList));
 				// Only the original owner thread can touch its views
 
 				ListCheckMessagesActivity.this.runOnUiThread(new Runnable() {
