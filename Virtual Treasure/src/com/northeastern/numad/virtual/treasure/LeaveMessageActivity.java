@@ -13,17 +13,21 @@ import org.json.JSONObject;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
-import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 
 public class LeaveMessageActivity extends ListActivity {
@@ -32,6 +36,7 @@ public class LeaveMessageActivity extends ListActivity {
 	AsyncFacebookRunner asyncRunner = new AsyncFacebookRunner(mFacebook);
 	List<Friend> friends = null;
 	private SharedPreferences mPrefs;
+	EditText searchEditText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,31 @@ public class LeaveMessageActivity extends ListActivity {
 		// make the request for getting the friend list
 
 		checkAcitveTokenForFacebook();
+
+		final TextWatcher tw = new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				Log.i("virtualtreasure", "sending string " + s.toString());
+				updateAdapter(s.toString());
+			}
+		};
+
+		searchEditText = (EditText) findViewById(R.id.searchEdittText);
+		searchEditText.addTextChangedListener(tw);
+	}
+
+	protected void updateAdapter(String keyWord) {
+		// update the list view but in the background
+		new filterFriends().execute(keyWord);
 	}
 
 	private void checkAcitveTokenForFacebook() {
@@ -130,7 +160,7 @@ public class LeaveMessageActivity extends ListActivity {
 					Friend f = new Friend();
 					f.id = id;
 					f.name = n;
-					
+
 					friends.add(f);
 				}
 
@@ -143,13 +173,19 @@ public class LeaveMessageActivity extends ListActivity {
 						// android.R.layout.simple_list_item_1, friends);
 						ArrayAdapter aa = new ArrayAdapter<String>(
 								getBaseContext(),
-								android.R.layout.simple_list_item_1,  /// Changed this now it shows fine
+								android.R.layout.simple_list_item_1, // /
+																		// Changed
+																		// this
+																		// now
+																		// it
+																		// shows
+																		// fine
 								getStringList(friends));
 						setListAdapter(aa);
 						aa.notifyDataSetChanged();
 					}
 
-					private List<String> getStringList(List<Friend> friends) {
+					public List<String> getStringList(List<Friend> friends) {
 						List<String> result = new ArrayList<String>();
 						for (Friend i : friends) {
 							result.add(i.name);
@@ -207,6 +243,59 @@ public class LeaveMessageActivity extends ListActivity {
 		i.putExtra("friend-name", f.name);
 		i.putExtra("friend-id", f.id);
 		startActivity(i);
+	}
+
+	private class filterFriends extends AsyncTask<String, Void, Void> {
+
+		List<String> resultList;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			// initializations
+			resultList = new ArrayList<String>();
+		}
+
+		@Override
+		protected Void doInBackground(String... params) {
+
+			if (params[0].equals("")) {
+				resultList = getStringList(friends);
+				Log.i("virtualtreasure", "empty list executed");
+			} else {
+				for (String friendList : getStringList(friends)) {
+					// convert both to lower case to compare
+					if (friendList.toLowerCase().contains(
+							params[0].toLowerCase()))
+						resultList.add(friendList);
+				}
+			}
+			return null;
+		}
+
+		public List<String> getStringList(List<Friend> friends) {
+			List<String> result = new ArrayList<String>();
+			for (Friend i : friends) {
+				result.add(i.name);
+			}
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			ArrayAdapter aa = new ArrayAdapter<String>(getBaseContext(),
+					android.R.layout.simple_list_item_1, // /
+															// Changed
+															// this
+															// now
+															// it
+															// shows
+															// fine
+					resultList);
+			setListAdapter(aa);
+			aa.notifyDataSetChanged();
+		}
 	}
 
 }
